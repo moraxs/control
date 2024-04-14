@@ -15,23 +15,24 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .container {
-            max-width: 800px;
-            margin: 50px auto;
+            max-width: 90%;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.5);
             border-radius: 10px;
+            backdrop-filter: blur(10px); /* 高斯模糊效果 */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
         .menu {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #ccc;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         .menu h1 {
@@ -55,7 +56,8 @@
         }
 
         .btn {
-            display: inline-block;
+            display: block;
+            width: 100%;
             padding: 8px 15px;
             background-color: #3498db;
             color: #fff;
