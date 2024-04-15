@@ -9,7 +9,7 @@ function register() {
         qq: qq
     };
 
-    fetch('http://123.249.82.206:3000/register', {
+    fetch('https://morax.669.ink/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
