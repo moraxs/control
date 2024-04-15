@@ -1,106 +1,87 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morax_PS用户中心</title>
+    <title>注册页面</title>
     <style>
-        /* 样式 */
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('https://img.morax.top/file/04230d1efc41656ac3942.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+            background-image: url('https://img.morax.top/file/04230d1efc41656ac3942.jpg');
+            background-size: cover;
+            background-position: center;
         }
-
-        .header-box {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
+        .blur-box {
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.4);
             border-radius: 10px;
-            backdrop-filter: blur(10px); /* 高斯模糊效果 */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
             text-align: center;
         }
-
-        .container {
-            max-width: 90%;
-            padding: 20px;
-            margin-top: 100px;
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 10px;
-            backdrop-filter: blur(10px); /* 高斯模糊效果 */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .menu h1 {
-            margin: 0;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .form-group input {
+        input[type="text"] {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
             border-radius: 5px;
             border: 1px solid #ccc;
+            box-sizing: border-box;
         }
-
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 8px 15px;
-            background-color: #3498db;
-            color: #fff;
+        input[type="button"] {
+            padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 20px;
+            background-color: #007bff;
+            color: white;
             cursor: pointer;
-            text-decoration: none;
+            transition: background-color 0.3s ease;
         }
-
-        .btn:hover {
-            background-color: #2980b9;
+        input[type="button"]:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
-
 <body>
-    <div class="header-box">
-        <h1>Morax_PS用户中心</h1>
+    <div class="blur-box">
+        <h2>注册</h2>
+        <input type="text" id="username" placeholder="请输入用户名">
+        <input type="text" id="uuid" placeholder="请输入你想使用的UID">
+        <input type="text" id="qq" placeholder="请输入QQ号">
+        <br>
+        <input type="button" value="确定" onclick="register()">
     </div>
-    <div class="container">
-        <div class="form-group">
-            <label for="username">用户名：</label>
-            <input type="text" id="username" name="username" placeholder="请输入用户名">
-        </div>
-        <div class="form-group">
-            <label for="password">密码：</label>
-            <input type="password" id="password" name="password" placeholder="请输入密码">
-        </div>
-        <div class="form-group">
-            <label for="qq">QQ号：</label>
-            <input type="text" id="qq" name="qq" placeholder="请输入QQ号">
-        </div>
-        <button class="btn">确定</button>
-    </div>
-</body>
 
+    <script>
+        function register() {
+            const username = document.getElementById('username').value;
+            const uuid = document.getElementById('uuid').value;
+            const qq = document.getElementById('qq').value;
+
+            const data = {
+                username: username,
+                uuid: uuid,
+                qq: qq
+            };
+
+            fetch('http://123.249.82.206:3000/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
 </html>
