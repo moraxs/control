@@ -1,4 +1,4 @@
-请你帮我加密一下下面的代码
+
 function register() {
     const username = document.getElementById('username').value;
     const uuid = document.getElementById('uuid').value;
